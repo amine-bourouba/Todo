@@ -11,6 +11,7 @@
               :rules="inputRule"
               label="write something !"
               outline
+              clearable
               ></v-text-field>
               <v-btn block color="grey" @click="addToChecklist()"
               >Add</v-btn>
@@ -27,11 +28,9 @@
                   @change="updateChecklistItem(item)">
                 </v-checkbox>
               </v-list-tile-action>
-              <v-list-tile-content>
-                <v-text-field
+              <v-text-field
                   v-model="item.content"
                   @change="updateChecklistItem(item)">{{item.content}}</v-text-field>
-              </v-list-tile-content>
               <v-list-tile-action>
                 <v-btn fab flat small color="error" @click="deleteChecklistItem(item.id)">
                   <v-icon>delete</v-icon>
@@ -63,10 +62,11 @@ export default {
       addToChecklist(){ 
         if(this.$refs.input.validate()){
           axios.post('/', this.newItem).then((response)=>{
-          this.getChecklist();
-          // console.log(response);
-        });
-        }      
+            this.getChecklist();
+            // console.log(response);
+          });
+        }
+        this.newItem = {};      
       },
 
       updateChecklistItem(item){

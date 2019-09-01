@@ -1907,7 +1907,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1935,6 +1934,8 @@ __webpack_require__.r(__webpack_exports__);
 
         });
       }
+
+      this.newItem = {};
     },
     updateChecklistItem: function updateChecklistItem(item) {
       var _this2 = this;
@@ -3205,7 +3206,8 @@ var render = function() {
                         attrs: {
                           rules: _vm.inputRule,
                           label: "write something !",
-                          outline: ""
+                          outline: "",
+                          clearable: ""
                         },
                         model: {
                           value: _vm.newItem.content,
@@ -3261,28 +3263,22 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c(
-                            "v-list-tile-content",
-                            [
-                              _c(
-                                "v-text-field",
-                                {
-                                  on: {
-                                    change: function($event) {
-                                      return _vm.updateChecklistItem(item)
-                                    }
-                                  },
-                                  model: {
-                                    value: item.content,
-                                    callback: function($$v) {
-                                      _vm.$set(item, "content", $$v)
-                                    },
-                                    expression: "item.content"
-                                  }
+                            "v-text-field",
+                            {
+                              on: {
+                                change: function($event) {
+                                  return _vm.updateChecklistItem(item)
+                                }
+                              },
+                              model: {
+                                value: item.content,
+                                callback: function($$v) {
+                                  _vm.$set(item, "content", $$v)
                                 },
-                                [_vm._v(_vm._s(item.content))]
-                              )
-                            ],
-                            1
+                                expression: "item.content"
+                              }
+                            },
+                            [_vm._v(_vm._s(item.content))]
                           ),
                           _vm._v(" "),
                           _c(
