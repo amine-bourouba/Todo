@@ -24,15 +24,17 @@
               <v-list-tile-action>
                 <v-checkbox 
                   v-model="item.checked" 
-                  @change="updateState(item)">
+                  @change="updateChecklistItem(item)">
                 </v-checkbox>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title v-text="item.content"></v-list-tile-title>
+                <v-text-field
+                  v-model="item.content"
+                  @change="updateChecklistItem(item)">{{item.content}}</v-text-field>
               </v-list-tile-content>
               <v-list-tile-action>
-                <v-btn fab small color="error" @click="deleteFromChecklist(item.id)">
-                  <v-icon>clear</v-icon>
+                <v-btn fab flat small color="error" @click="deleteChecklistItem(item.id)">
+                  <v-icon>delete</v-icon>
                 </v-btn>
               </v-list-tile-action>
             </v-list-tile>
@@ -67,7 +69,7 @@ export default {
         }      
       },
 
-      updateState(item){
+      updateChecklistItem(item){
         axios.put('/', item).then((response)=>{
           this.getChecklist();
           // console.log(response);
@@ -81,7 +83,7 @@ export default {
         });
       },
 
-      deleteFromChecklist(item){
+      deleteChecklistItem(item){
         axios.delete('/'+item).then((response)=>{
           this.getChecklist();
           // console.log(response);

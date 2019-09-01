@@ -25,7 +25,8 @@ class ChecklistController extends Controller
     public function update(Request $request)
     {
         $checklist = Checklist::find($request->id);
-        $checklist->checked = !($checklist->checked);
+        $checklist->content = $request->content;
+        $checklist->checked = $request->checked;
         $checklist->save();
     }
 
